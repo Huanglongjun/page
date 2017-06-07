@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../code/css/public/bootstrap1.min.css?version=2.01"/>
+    <link rel="stylesheet" href="../code/css/page.css?version=2.01"/>
+</head>
+<body>
+<div id="container">
+    <div id="header">
+
+    </div>
+    <div class="content">
+        <div class="clearfix" id="top_menu">
+            <ul class="sf-menu sf-js-enabled sf-shadow">
+
+            </ul>
+        </div>
+        <div class="content-main">
+            <input type="text" id="sear_in"/>
+            <input type="button" value="搜索" id="sear_btn"/>
+            <div id="test1"></div>
+            <input type="text" id="sear_in1"/>
+            <input type="button" value="搜索" id="sear_btn1"/>
+            <div id="test2"></div>
+
+        </div>
+        <div id="footer">
+
+        </div>
+    </div>
+</div>
+
+<script src="../code/js/lib/jQuery-2.2.2.min.js?version=2.01"></script>
+<script src="../code/js/lib/bootstrap.js?version=2.01"></script>
+<script src="../code/js/public/common.js?version=2.01"></script>
+<script src="../code/js/page.js"></script>
+<script>
+    (function(){
+        var setting={
+            parms:{keyword:"1255"},
+            columns:[{hname:"我是什么鬼",width:"15%",name:"projectname"},
+                {hname:"我是什么鬼1",width:"20%",name:"planstarttime"},
+                {hname:"我是什么鬼2",width:"20%",name:"planendtime"},
+                {hname:"我是什么鬼3",width:"20%",
+                    align:"center",
+                    render:function(i,n){
+                        return '<input type="text"  name="state" value="'+ n.state+'"/>'
+                    }
+                },
+                {hname:"我是什么鬼4",width:"20%",
+                    align:"center",
+                    render:function(i,n){
+                        return  n.state==0?"未完成":"已完成";
+                    }
+                }
+            ],
+            checkbox:true,
+            checkboxWidth:"5%",
+            url:"aa.json",
+            method:"get",
+            dataAdapter:Util.dataAdapter
+        };
+        $("#test1").pagination("init",setting);
+        $("#sear_btn").click(function(){
+            var keyword=$("#sear_in").val();
+            var data={
+                keyword:keyword
+            };
+            $("#test1").pagination("loadData",data);
+        });
+        $("#sear_btn1").click(function(){
+            var keyword=$("#sear_in1").val();
+            var data={
+                keyword:keyword
+            };
+            $("#test2").pagination("loadData",data);
+        });
+        var setting1={
+            columns:[{hname:"我是什么鬼",width:"15%",name:"projectname"},
+                {hname:"我是什么鬼1",width:"20%",name:"planstarttime"},
+                {hname:"我是什么鬼2",width:"20%",name:"planendtime"},
+                {hname:"我是什么鬼4",width:"20%",
+                    align:"center",
+                    render:function(i,n){
+                        return  n.state==0?"未完成":"已完成";
+                    }
+                }
+            ],
+            url:"aa.json",
+            method:"get",
+            dataAdapter:Util.dataAdapter
+        };
+        $("#test2").pagination("init",setting1);
+    })();
+</script>
+</body>
+</html>
